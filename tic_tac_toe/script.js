@@ -2,6 +2,7 @@ let board = [0,0,0,0,0,0,0,0,0]
 let turn = true
 let modal = document.getElementById("modal")
 let close = document.getElementsByClassName("close")[0]
+let winner = " "
 function add(x) {
     if (board[x] == 0){
         if (turn){
@@ -14,12 +15,16 @@ function add(x) {
         turn = !turn
         let win = check()
         console.log({win})
-        if(win == 1){
+        if (win != 0) {
+            if(win == 1){
+                winner = "X"
+            } else if(win == -1){
+                winner = "O"
+            }
+            document.getElementById("win-text").innerHTML = winner + " win"
             modal.style.display = "block"
             board = [0,0,0,0,0,0,0,0,0]
-        } else if(win == -1){
-            modal.style.display = "block"
-            board = [0,0,0,0,0,0,0,0,0]
+            turn = true
         }
     }
 }
@@ -51,4 +56,7 @@ function write(id, val) {
 }
 close.onclick = function(){
     modal.style.display = "none"
+    for (let i = 0; i < 9; i++) {
+        document.getElementById(i).innerHTML = ""
+    }
 }
