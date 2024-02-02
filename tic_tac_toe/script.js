@@ -11,7 +11,6 @@ function add(x) {
             board[x] = -1
         }
         write(x,board[x])
-        console.log({board})
         turn = !turn
         let win = check()
         console.log({win})
