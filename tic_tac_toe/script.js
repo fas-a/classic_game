@@ -1,46 +1,54 @@
-let a = 0
-let b = 0
-let d = [0,0,0,0,0,0,0,0,0]
-let c = true
-console.log({d})
+let board = [0,0,0,0,0,0,0,0,0]
+let turn = true
+let modal = document.getElementById("modal")
+let close = document.getElementsByClassName("close")[0]
 function add(x) {
-    if (d[x] == 0){
-        if (c){
-            d[x] = 1
+    if (board[x] == 0){
+        if (turn){
+            board[x] = 1
         } else {
-            d[x] = -1
+            board[x] = -1
         }
-        console.log({d})
-        c = !c
+        write(x,board[x])
+        console.log({board})
+        turn = !turn
         let win = check()
         console.log({win})
-        // if(win == 1){
-        //     console.log("1 win")
-        // } else if(win == -1){
-        //     console.log("-1 win")
-        // }
+        if(win == 1){
+            modal.style.display = "block"
+            board = [0,0,0,0,0,0,0,0,0]
+        } else if(win == -1){
+            modal.style.display = "block"
+            board = [0,0,0,0,0,0,0,0,0]
+        }
     }
 }
 function check() {
     for (let i = 0; i < 3; i++) {
-        console.log("a")
-        if(d[i] == d[i+3] && d[i+3] == d[i+6] && d[i] != 0){
-            return d[i]
+        if(board[i] == board[i+3] && board[i+3] == board[i+6] && board[i] != 0){
+            return board[i]
         }
     }
     for (let i = 0; i < 9; i+=3) {
-        console.log("b")
-        if(d[i] != 0 && d[i] == d[i+1] && d[i+1] == d[i+2]){
-            return d[i]
+        if(board[i] != 0 && board[i] == board[i+1] && board[i+1] == board[i+2]){
+            return board[i]
         }
     }
-    if(d[0] == d[4] && d[4] == d[8] && d[0] != 0){
-        return d[0]
+    if(board[0] == board[4] && board[4] == board[8] && board[0] != 0){
+        return board[0]
     }
-    console.log("c")
-    if(d[2] == d[4] && d[4] == d[6] && d[2] != 0){
-        return d[2]
+    if(board[2] == board[4] && board[4] == board[6] && board[2] != 0){
+        return board[2]
     }
-    console.log("d")
     return 0
+}
+function write(id, val) {
+    if(val == 1){
+        document.getElementById(id).innerHTML = "X"
+    } else {
+        document.getElementById(id).innerHTML = "O"
+    }
+}
+close.onclick = function(){
+    modal.style.display = "none"
 }
