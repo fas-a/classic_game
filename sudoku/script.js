@@ -10,3 +10,9 @@ function getnum(num) {
     befnum = num
     console.log({befnum})
 }
+
+function placenum(id) {
+    if(picknum != 0){
+        document.getElementById(id).innerHTML = picknum
+    }
+}
