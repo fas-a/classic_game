@@ -9,14 +9,17 @@
 
 .row {
     display: flex;
-    border: solid;
 }
 
+.row-num{
+    display: flex;
+    border: solid;
+}
 .box{
     width: 4rem;
     height: 4rem;
     border: solid;
-    font-size: 8rem;
+    font-size: 4rem;
     text-align: center;
     cursor: pointer;
 }
