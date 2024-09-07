@@ -4,8 +4,8 @@ function getnum(num) {
     picknum = num
     console.log({num})
     if(befnum != num){
-        document.getElementById(num).style.backgroundColor = "#aaa"
-        document.getElementById(befnum).style.backgroundColor = "#fefefe"
+        document.getElementById(num).classList.add("box-selected")
+        document.getElementById(befnum).classList.remove("box-selected")
     }
     befnum = num
     console.log({befnum})
